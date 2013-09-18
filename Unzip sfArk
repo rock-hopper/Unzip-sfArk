@@ -3,7 +3,7 @@
 # 'Unzip sfArk' by RockHopper 2013
 #
 # This is a Nautilus script to invoke 'sfArkXTm'. It assumes that sfArkXTm is
-# installed in ~/Extra Goodies/SfArkXTm and that xterm is available.
+# installed in /usr/bin and that xterm is available.
 #
 # This script is public domain and provided 'as-is', without any express or implied 
 # warranty. In no event will the author be held liable for any damages arising from 
