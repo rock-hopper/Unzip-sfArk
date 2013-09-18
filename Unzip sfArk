@@ -13,7 +13,7 @@
 # These variables may be modified if sfArkXTm is installed somewhere other than ~/Extra Goodies/SfArkXTm
 # or if you wish to use a different terminal emulator
 
-SFARKXTM_DIR="$HOME/Extra Goodies/SfArkXTm"
+SFARKXTM_DIR="/usr/bin"
 SFARKXTM_EXEC="sfArkXTm"
 TERMINAL_COMMAND="xterm -hold -title UnzipSfArk -font 9x15 -e"
 
