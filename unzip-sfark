@@ -37,6 +37,8 @@ function startUnderline() { tput smul; }
 
 function stopUnderline() { tput rmul; }
 
+function resetText() { echo -en "\e[0m"; }
+
 
 function exitWithError() 
 {
@@ -47,7 +49,7 @@ function exitWithError()
     # 1>&2 means redirect text headed for stdout to stderr
     echo -e "$errorMessage\n" 1>&2
     
-    setTextColour $WHITE
+    resetText
     
     exit 1
 }
@@ -76,4 +78,4 @@ else
     setTextColour $YELLOW; echo "Completed with $numErrors error(s)"
 fi
 
-setTextColour $WHITE
+resetText
