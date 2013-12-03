@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=all/allfiles;
+Actions=UnzipSfArk;
+X-KDE-AuthorizeAction=shell_access
+ 
+[Desktop Action UnzipSfArk]
+Exec=konsole --hold -e unzip-sfark %F
+Icon=utilities-terminal
+Name=Unzip sfArk

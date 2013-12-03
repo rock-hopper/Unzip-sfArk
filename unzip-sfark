@@ -1,0 +1,79 @@
+#!/bin/bash
+#
+# 'unzip-sfark' by RockHopper 2013
+#
+# Intended to be launched from a Nautilus script or KDE service menu, this script 
+# will invoke sfArkXTm on each selected file in turn. It assumes that sfArkXTm 
+# is installed in a directory included in the PATH environment variable 
+# (e.g. /usr/bin, /usr/local/bin).
+#
+# This script is public domain and provided 'as-is', without any express or implied 
+# warranty. In no event will the author be held liable for any damages arising from 
+# the use of this software.
+
+
+# This variable may be modified if you need to specify the path of sfArkXTm
+
+SFARKXTM_PATH="sfArkXTm"
+###########################################################################
+
+
+declare -ra FILE_PATHS=("$@")
+
+declare -ri CYAN=3
+declare -ri RED=4
+declare -ri YELLOW=6
+declare -ri WHITE=7
+
+declare filePath=""
+declare outputFile=""
+
+declare -i numErrors=0
+
+
+function setTextColour() { tput setf $1; }
+
+function startUnderline() { tput smul; }
+
+function stopUnderline() { tput rmul; }
+
+
+function exitWithError() 
+{
+    declare errorMessage="$1"
+    
+    setTextColour $RED
+    
+    # 1>&2 means redirect text headed for stdout to stderr
+    echo -e "$errorMessage\n" 1>&2
+    
+    setTextColour $WHITE
+    
+    exit 1
+}
+
+
+setTextColour $YELLOW; startUnderline; echo -e "\nUnzip sfArk\n"; stopUnderline; setTextColour $WHITE
+
+for filePath in "${FILE_PATHS[@]}"; do
+    if [[ $filePath != *.[sS][fF][aA][rR][kK] ]] && [[ $filePath != *.[sS][fF]2[aA][rR][kK] ]]; then
+        exitWithError "\"$filePath\" is not a SF2 Archive"
+    fi
+
+    outputFile="${filePath##*/}"
+    outputFile="${outputFile%.*}.sf2"
+    "$SFARKXTM_PATH" "$filePath" "$outputFile"
+    
+    if (( $? != 0 )); then
+        (( numErrors++ ))
+    fi
+    echo
+done
+
+if (( numErrors == 0 )); then
+    setTextColour $YELLOW; echo "All done!"
+else
+    setTextColour $YELLOW; echo "Completed with $numErrors error(s)"
+fi
+
+setTextColour $WHITE

@@ -2,48 +2,30 @@
 #
 # 'Unzip sfArk' by RockHopper 2013
 #
-# This is a Nautilus script to invoke 'sfArkXTm'. It assumes that sfArkXTm is
-# installed in /usr/bin and that xterm is available.
+# This is a Nautilus script to invoke sfArkXTm via the unzip-sfark script. It 
+# assumes that unzip-sfark is installed in a directory included in the PATH  
+# environment variable (e.g. /usr/bin, /usr/local/bin) and that xterm is available.
 #
 # This script is public domain and provided 'as-is', without any express or implied 
 # warranty. In no event will the author be held liable for any damages arising from 
 # the use of this software.
 
 
-# These variables may be modified if sfArkXTm is installed somewhere other than ~/Extra Goodies/SfArkXTm
+# These variables may be modified if you need to specify the path of unzip-sfark
 # or if you wish to use a different terminal emulator
 
-SFARKXTM_DIR="/usr/bin"
-SFARKXTM_EXEC="sfArkXTm"
+UNZIP_SFARK_PATH="unzip-sfark"
 TERMINAL_COMMAND="xterm -hold -title UnzipSfArk -font 9x15 -e"
+# TERMINAL_COMMAND="konsole --hold -e"
 
 # N.B. For a list of available fonts in xterm type: appres XTerm | grep VT100.font
 ##################################################################################
 
 
-commandToExec='function setTextColour { tput setf $1; }; let CYAN=3; let RED=4; let YELLOW=6; let WHITE=7; '
-commandToExec+='function startUnderline { tput smul; }; function stopUnderline { tput rmul; }; '
+declare -a filePaths
 
-commandToExec+='setTextColour $YELLOW; startUnderline; echo -e "\nUnzip sfArk\n"; stopUnderline; setTextColour $WHITE; '
+while IFS="\n" read -r -d $'\n' filePath; do
+    filePaths+=("$filePath")
+done < <(echo -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
 
-commandToExec+="cd '$SFARKXTM_DIR'; "
-
-for fileUri in $NAUTILUS_SCRIPT_SELECTED_URIS; do
-    filePath="${fileUri#file://}"
-    filePath="${filePath//%20/ }"
-
-    if [[ $filePath != *.[sS][fF][aA][rR][kK] ]] && [[ $filePath != *.[sS][fF]2[aA][rR][kK] ]]; then
-        commandToExec+='setTextColour $RED; '
-        commandToExec+="echo '\"$filePath\" is not a SF2 Archive'"
-        $TERMINAL_COMMAND "$commandToExec"
-        exit 1
-    fi
-
-    outputFile="${filePath##*/}"
-    outputFile="${outputFile%.*}.sf2"
-    commandToExec+="./$SFARKXTM_EXEC '$filePath' '$outputFile'; echo; "
-done
-
-commandToExec+='if [ $? -eq 0 ]; then setTextColour $YELLOW; echo "All done!"; fi'
-
-$TERMINAL_COMMAND "$commandToExec"
+$TERMINAL_COMMAND "$UNZIP_SFARK_PATH" "${filePaths[@]}"
