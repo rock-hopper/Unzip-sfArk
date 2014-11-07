@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Unzip-sfark : Launch sfArkXTm from a Nautilus script or KDE service menu">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Unzip-sfark</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/rock-hopper/Unzip-sfArk">View on GitHub</a>
+
+          <h1 id="project_title">Unzip-sfark</h1>
+          <h2 id="project_tagline">Launch sfArkXTm from a Nautilus script or KDE service menu</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/rock-hopper/Unzip-sfArk/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/rock-hopper/Unzip-sfArk/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="unzip-sfark" class="anchor" href="#unzip-sfark" aria-hidden="true"><span class="octicon octicon-link"></span></a>unzip-sfark</h1>
+
+<p>Intended to be launched from a Nautilus script or KDE service menu, this script will invoke sfArkXTm on each selected sfArk file in turn. It assumes that sfArkXTm is installed in a directory included in the PATH environment variable (e.g. /usr/bin, /usr/local/bin).</p>
+
+<hr>
+
+<h1>
+<a id="unzip-sfark-1" class="anchor" href="#unzip-sfark-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unzip sfArk</h1>
+
+<p>Nautilus script to invoke sfArkXTm via the unzip-sfark script. It assumes that unzip-sfark is installed in a directory included in the PATH environment variable (e.g. /usr/bin, /usr/local/bin) and that xterm is available.</p>
+
+<p>Near the top of the script are variables that may be modified if you need to specify the path of unzip-sfark or if you wish to use a different terminal emulator:</p>
+
+<pre><code>UNZIP_SFARK_PATH="unzip-sfark"
+TERMINAL_COMMAND="xterm -hold -title UnzipSfArk -font 9x15 -e"
+</code></pre>
+
+<p>Place the script in the Nautilus scripts directory, e.g. '~/.gnome2/nautilus-scripts'. If Nautilus Scripts Manager is installed, place the script in '/usr/share/nautilus-scripts'.</p>
+
+<hr>
+
+<h1>
+<a id="unzip-sfarkdesktop" class="anchor" href="#unzip-sfarkdesktop" aria-hidden="true"><span class="octicon octicon-link"></span></a>unzip-sfark.desktop</h1>
+
+<p>KDE service menu .desktop file to invoke sfArkXTm via the unzip-sfark script. It assumes that unzip-sfark is installed in a directory included in the PATH environment variable (e.g. /usr/bin, /usr/local/bin).</p>
+
+<p>Place the .desktop file in one of the service menu directories, e.g. '/usr/share/services/ServiceMenus'.</p>
+
+<p>You can find the location of all service directories like so:</p>
+
+<pre><code>kde4-config --path services
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Unzip-sfark maintained by <a href="https://github.com/rock-hopper">rock-hopper</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
