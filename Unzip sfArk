@@ -2,7 +2,7 @@
 #
 # 'Unzip sfArk' by Andrew M Taylor 2013
 #
-# This is a Nautilus script to invoke sfArkXTm via the unzip-sfark script. It 
+# This is a Nautilus script to invoke sfarkxtc via the unzip-sfark script. It 
 # assumes that unzip-sfark is installed in a directory included in the PATH  
 # environment variable (e.g. /usr/bin, /usr/local/bin) and that xterm is available.
 #

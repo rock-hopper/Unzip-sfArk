@@ -3,7 +3,7 @@
 # 'unzip-sfark' by Andrew M Taylor 2013
 #
 # Intended to be launched from a Nautilus script or KDE service menu, this script 
-# will invoke sfArkXTm on each selected file in turn. It assumes that sfArkXTm 
+# will invoke sfarkxtc on each selected file in turn. It assumes that sfarkxtc 
 # is installed in a directory included in the PATH environment variable 
 # (e.g. /usr/bin, /usr/local/bin).
 #
@@ -11,9 +11,9 @@
 # Please read UNLICENSE for more details, or refer to <http://unlicense.org/>
 
 
-# This variable may be modified if you need to specify the path of sfArkXTm
+# This variable may be modified if you need to specify the path of sfarkxtc
 
-SFARKXTM_PATH="sfArkXTm"
+SFARKXTC_PATH="sfarkxtc"
 ###########################################################################
 
 
@@ -63,7 +63,7 @@ for filePath in "${FILE_PATHS[@]}"; do
 
     outputFile="${filePath##*/}"
     outputFile="${outputFile%.*}.sf2"
-    "$SFARKXTM_PATH" "$filePath" "$outputFile"
+    "$SFARKXTC_PATH" "$filePath" "$outputFile"
     
     if (( $? != 0 )); then
         (( numErrors++ ))
