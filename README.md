@@ -1,7 +1,7 @@
 unzip-sfark
 ===========
 
-Intended to be launched from a Nautilus script or KDE service menu, this script will invoke sfarkxtc on each selected sfArk file in turn. It assumes that sfarkxtc is installed in a directory included in the PATH environment variable (e.g. /usr/bin, /usr/local/bin).
+Intended to be launched from a Nautilus script or KDE service menu, this script will invoke ![sfarkxtc](https://github.com/raboof/sfarkxtc) on each selected sfArk file in turn. It assumes that sfarkxtc is installed in a directory included in the PATH environment variable (e.g. /usr/bin, /usr/local/bin).
 ___
 
 Unzip sfArk
